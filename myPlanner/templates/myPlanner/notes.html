@@ -1,0 +1,109 @@
+{%extends 'myPlanner/layout.html'%}
+{%load static%}
+{%block body%}
+<script src="{%static 'myPlanner/notes.js'%}"></script>
+<h1 class="text-info">Study Notes</h1>
+<div id="alert-section"></div>
+<div id="noteCreate">
+    <hr>
+    <h2>Study Note Creation Form:</h2>
+    <form id="noteCreateForm" name="noteCreateForm" method="POST" action="{% url 'notes'%}">
+        <div class="form-group">
+            <label for="noteCreateTitle">Enter the name for your study notes:</label>
+            <input required type="text" class="form-control" name="noteCreateTitle" id="noteCreateTitle" placeholder="Enter your study note's name...">
+            <br>
+            <label for="noteCreateNote">Enter the notes here <span class="text-primary font-weight-bold">(<a href="https://www.markdownguide.org/basic-syntax/" target="_BLANK">MARKDOWN</a>*)</span>:</label>
+            <img src="{%static 'myPlanner/markdown_logo.png'%}" class="img-thumbnail" height="50" width="50">
+            <div class="row">
+                <div class="col-sm">
+                    <textarea form="noteCreateForm" id="noteCreateNote" rows='16' name="noteCreateNote" class="form-control" placeholder="Write your notes here"></textarea>
+                </div>
+                <div class="col-sm">
+                    <div id="previewDiv">
+                        <h2>Your Preview:</h2>
+                        <a href="https://github.com/showdownjs/showdown" target="_BLANK">Powered by Showdown</a>
+                        <hr>
+                        <br>
+                        <div id="markdownPreview"></div>
+                    </div>
+                </div>
+              </div>
+            
+            
+            <label for="noteCreateTest">Enter the test these notes are for:</label>
+            <p class="text-secondary">Only one study note per test (you can edit each note).</p>
+            <p class="text-secondary">You can see/edit notes in your school.</p>
+            <p class="text-secondary">Once a test finishes, your notes will still be available (you can delete them).</p>
+            <br>
+            <input list="tests" required id="noteCreateTest" name="noteCreateTest" class="form-control" placeholder="Choose a test">
+                <datalist id="tests">
+                </datalist>
+                <br>
+            <button type="submit" form="noteCreateForm" class="btn btn-outline-success form-control"><i class="fas fa-cut"></i> Create</button>
+        </div>
+    </form> 
+    <hr>
+</div>
+<div id="noteEdit">
+    <hr>
+    <h2>Study Note Edit Form:</h2>
+    <form id="noteEditForm" name="noteEditForm" method="POST" action="{% url 'notes'%}">
+        {%csrf_token%}
+        <input type="text" hidden id="noteEditID">
+        <div class="form-group">
+            <label for="noteEditTitle">Enter the name for your study notes:</label>
+            <input required type="text" class="form-control" name="noteEditTitle" id="noteEditTitle" placeholder="Enter your study note's name...">
+            <br>
+            <label for="noteEditNote">Enter the notes here:</label>
+            <div class="row">
+                <div class="col-sm">
+                    <textarea form="noteEditForm" id="noteEditNote" rows='16' name="noteEditNote" class="form-control" placeholder="Write your notes here"></textarea>
+                </div>
+                <div class="col-sm">
+                    <div id="editPreviewDiv">
+                        <h2>Your Preview:</h2>
+                        <a href="https://github.com/showdownjs/showdown" target="_BLANK">Powered by Showdown</a>
+                        <hr>
+                        <div id="editMarkdownPreview"></div>
+                    </div>
+                </div>
+              </div>
+            <br>
+            <label for="noteEditTest">Enter the test these notes are for:</label>
+            <br>
+            <input type="text" readonly id="noteEditTest" name="noteEditTest" class="form-control">
+            <br>
+            <button type="submit" id="noteEditSaveBtn" form="noteEditForm" class="btn btn-warning form-control"><i class="fas fa-save"></i> Save</button>
+        </div>
+    </form>
+    <button id="NoteEditBackBtn" class="btn btn-outline-success form-control">Go Back. <i class='fas fa-arrow-alt-circle-left'></i></button>
+
+    <div id="rowDisplay"></div>
+</div>
+
+<div id="notesViewHead">
+    <h1>Study Notes For your tests:</h1>
+
+    <div class="row">
+        <div class="col-sm">
+            <label>Filter by Title:</label>
+            <input type="text" class="form-control" id="noteFilterInput" name="noteFilterInput" placeholder="Title:">
+        </div>
+        <div class="col-sm">
+            <label>Filter by Subject:</label>
+            <input list="subjects" class="form-control" name="noteFilterSubject" id="noteFilterSubject" placeholder="Subject:">
+            <datalist id="subjects">       
+            </datalist>
+        </div>
+        <div class="col-sm">
+            <label>Filter by Date of Creation:</label>
+            <input type="date" class="form-control" name="noteFilterDate" id="noteFilterDate" placeholder="Date:">
+        </div>
+    </div>
+    
+</div>
+<br />
+<div id="notesView"></div>
+<div id="noteView"></div>
+
+{%endblock%}

@@ -1,0 +1,57 @@
+{%extends 'myPlanner/layout.html'%}
+{%load static%}
+{%block body%}
+<script src="{%static 'myPlanner/settings.js'%}"></script>
+<h1 class="text-info">Settings:</h1>
+<div id="alert-section"></div>
+<div id="profileFormDiv">
+    <hr>
+    <h2>Profile Settings:</h2>
+    <form action="{%url 'settings'%}" method="POST" id="profileForm" id="profileForm"> 
+        {%csrf_token%}
+        <div class="form-group">
+            <span>Username</span>
+            <input class="form-control" type="text" required name="username" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <span>New Password</span>
+            <input class="form-control" type="password" name="passChange" id="passChange" placeholder="Change your Password">
+        </div>
+        <div class="form-group">
+            <span>Confirm your Password</span>
+            <input class="form-control" type="password" name="passChangeConf" id="passChangeConf" placeholder="Confirm your Password">
+        </div>
+        <div class="form-group">
+            <span>Enter your current password</span>
+            <input class="form-control" type="password" required name="password" id="password" placeholder="Current Password">
+        </div>
+        <button type="submit" form="profileForm" class="btn btn-success form-control"><i class="fas fa-save"></i> Save</button>
+    </form>
+</div>
+<div id="schoolFormDiv">
+    <hr>
+    <h2>School Password Settings:</h2>
+    <p>You can only change the passwords of schools that have been created by you.</p>
+    <form action="{%url 'settings'%}" method="POST" id="schoolPassForm" id="schoolPassForm">
+        <div class="form-group">
+            <span>School</span>
+            <input class="form-control" list="schools" required name="school" id="school" placeholder="School">
+            <datalist id="schools"></datalist>
+        </div>
+
+        <div class="form-group">
+            <span>New Password</span>
+            <input class="form-control" type="password" required name="schoolPassChange" id="schoolPassChange" placeholder="Change the Password">
+        </div>
+        <div class="form-group">
+            <span>Confirm your Password</span>
+            <input class="form-control" type="password" name="schoolPassChangeConf" id="schoolPassChangeConf" placeholder="Confirm your Password">
+        </div>
+        <div class="form-group">
+            <span>Enter the current password</span>
+            <input class="form-control" type="password" required name="schoolPass" id="schoolPass" placeholder="Current Password">
+        </div>
+        <button type="submit" form="schoolPassForm" class="btn btn-success form-control"><i class="fas fa-save"></i> Save</button>
+    </form>
+</div>
+{%endblock%}

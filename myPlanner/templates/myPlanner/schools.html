@@ -1,0 +1,59 @@
+{%extends 'myPlanner/layout.html'%}
+{%load static%}
+{%block body%}
+<h1 class="text-primary">Schools</h1>
+<script src="{%static 'myPlanner/schools.js'%}"></script>
+<div id="schoolCreate">
+    <hr>
+    <h2 class="text-success">School Creation Form:</h2>
+    <form id="schoolCreateForm" name="schoolCreateForm" method="POST" action="{% url 'schools'%}">
+        <div class="form-group">
+            <label for="schoolCreateName" class="text-success">Enter your school's name:</label>
+            <input required type="text" class="form-control" name="schoolCreateName" id="schoolCreateName" placeholder="Enter your school's name...">
+            <br>
+            <label for="schoolCreatePass" class="text-success">Enter a password:</label>
+            <input required type="password" class="form-control" name="schoolCreatePass" id="schoolCreatePass" placeholder="Create a password...">
+            <br>
+            <label for="schoolCreatePassConf" class="text-success">Confirm your password:</label>
+            <input required type="password" class="form-control" name="schoolCreatePassConf" id="schoolCreatePassConf" placeholder="Confirm your password...">
+            <br>
+            <button type="submit" form="schoolCreateForm" class="btn btn-outline-success form-control"><i class="fas fa-cut"></i> Create</button>
+        </div>
+    </form> 
+    <hr>
+</div>
+<div id="schoolJoin">
+    <h2 class="text-info">School Join Form:</h2>
+    <form id="schoolJoinForm" name="schoolJoinForm" method="POST" action="{% url 'schools'%}">
+        <div class="form-group">
+            <label for="schoolJoinName" class="text-info">Enter your school's name:</label>
+            <input required type="text" class="form-control" name="schoolJoinName" id="schoolJoinName" placeholder="Enter your school's name...">
+            <br>
+            <label for="schoolJoinPass" class="text-info">Enter the password (given to you by the creator of this school):</label>
+            <input required type="password" class="form-control" name="schoolJoinPass" id="schoolJoinPass" placeholder="Create a password...">
+            <br>
+            <button type="submit" form="schoolJoinForm" class="btn btn-outline-info form-control"><i class="fas fa-sign-in-alt"></i> Join</button>
+        </div>
+    </form> 
+    <hr>
+</div>
+<div id="schoolView"></div>
+<div id="schoolIndView"></div>
+<hr>
+<div id="schoolVoteKick">
+    <h2>Votekicking:</h2>
+    <p class="text-secondary">If you wish to remove someone from this school then please vote and submit this form. *Atleast 50% of the school needs to vote for a removal *A person that has been votekicked must wait 7 days before rejoining the same school.</p>
+    <form id="schoolKickForm" name="schoolKickForm" method="POST" action="{% url 'schools'%}">
+        <input type="text" hidden id="schoolKickSchool">
+        <div class="form-group">
+            <label for="schoolJoinName">Enter the person you want to remove:</label>
+            <input required list="classmates" class="form-control" name="schoolKickName" id="schoolKickName" placeholder="Enter the person's name...">
+            <datalist id="classmates">
+
+            </datalist>
+            <br>
+            <button type="submit" form="schoolKickForm" class="btn btn-outline-danger form-control"><i class="fas fa-vote-yea"></i> Vote</button>
+        </div>
+    </form> 
+</div>
+{%endblock%}

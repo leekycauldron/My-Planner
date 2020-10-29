@@ -1,0 +1,24 @@
+{% extends "myPlanner/layout.html" %}
+
+{% block body %}
+
+    <h2 class='text-center'>Login</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="text" required name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" required name="password" placeholder="Password">
+        </div>
+        <input class="btn btn-outline-success" type="submit" value="Login">
+    </form>
+
+    Don't have an account? <a href="{% url 'register' %}">Create one here.</a>
+
+{% endblock %}

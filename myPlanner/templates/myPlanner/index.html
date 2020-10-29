@@ -1,0 +1,80 @@
+{%extends 'myPlanner/layout.html'%}
+{%load static%}
+{%block body%}
+<div id="indexBody">
+<div class="m-1">
+{%if user.is_authenticated%}
+<h1 class="text-success">{{user.username}}'s Dashboard:</h1>
+{{error}}
+  <hr>
+<br>
+<div class="row">
+    <div class="col-sm">
+      <div class="card border border-success">
+        <div class="card-body" id="school">
+          <h2>A Few of <strong class="text-primary">Your</strong> Schools:</h2>
+          <ul>
+            <hr>
+            {%for school in schools%}
+            <h3 class='text-center'>{{school.name}}</h3>
+            <hr>
+            {%empty%}
+            <p>Looks like you aren't part of any schools!</p>
+            {%endfor%}
+            <a href="{%url 'schools'%}" class="nav-link"><button class="btn btn-outline-success form-control">Visit the schools page <i class="fas fa-school"></i></button></a>
+        </ul>
+        </div>
+      </div>
+      <br>
+      <div class="card border border-success">
+        <div class="card-body" id="note">
+          <h2>Most <strong class="text-primary">Recent</strong> Study Notes in your school:</h2>
+          <ul><hr>
+            {%for note in notes%}
+            <h3 class='text-center'>{{note.title}}</h3>
+            <p class="text-secondary text-center">Created: {{note.dateOfCreation}}</p>
+            <p class="text-secondary text-center">Test: {{note.test}}/ Subject: {{note.subject}}</p>
+            <p class="text-secondary text-center">School: {{note.school}}</p>
+            <p class="text-secondary text-center">Created By: {{note.creator}}</p>
+            <hr>
+            {%empty%}
+            <p>Looks like you don't have any study notes!</p>
+            {%endfor%}
+            <a href="{%url 'notes'%}" class="nav-link"><button class="btn btn-outline-success form-control">Visit the notes page <i class="fas fa-sticky-note"></i></button></a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="card border border-success">
+        <div class="card-body" id="test">
+            <h2><strong class="text-primary">Your</strong> Upcoming Tests:</h2>
+            <div class="overflow-auto h-100">
+                <ul>
+                    <hr>
+                    <div style="overflow:auto">
+                    {%for test in tests%}
+                    <h3 class='text-center'>{{test.name}}</h3>
+                    <p class="text-secondary text-center">{{test.date}}</p>
+                    <p class="text-center">Subject: {{test.subject}}</p>
+                    <p class="text-center">School: {{test.school}}</p>
+                    <hr>
+                    {%empty%}
+                    <p>Looks like you don't have any tests scheduled! Celebrate!</p>
+                    {%endfor%}
+                    </div>
+                    <a href="{%url 'tests'%}" class="nav-link"><button class="btn btn-outline-success form-control">Visit the tests page <i class="fas fa-file-alt"></i></button></a>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ {%else%}
+ <h2>Welcome to My Planner! <hr> A School Planner that helps students study for tests. <br><br><a href="{%url 'login'%}">Sign in</a> to get started.</h2> 
+{%endif%}
+</div>
+</div>
+{%endblock%}

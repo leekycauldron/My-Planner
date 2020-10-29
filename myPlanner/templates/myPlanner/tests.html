@@ -1,0 +1,69 @@
+{%extends 'myPlanner/layout.html'%}
+{%load static%}
+{%block body%}
+<h1 class="text-primary">Tests</h1>
+<script src="{%static 'myPlanner/tests.js'%}"></script>
+<div id="testCreate">
+    <hr>
+    <h2 class="text-success">Test Creation Form:</h2>
+    <form id="testCreateForm" name="testCreateForm" method="POST" action="{% url 'tests'%}">
+        {%csrf_token%}
+        <div class="form-group">
+            <label for="testCreateName" class="text-success">Enter the test's name:</label>
+            <input required type="text" class="form-control" name="testCreateName" id="testCreateName" placeholder="Test Name...">
+            <br>
+            <label for="testCreateSchool" class="text-success">Choose which school this test will take place in:</label>
+            <input required list="schools" class="form-control" name="testCreateSchool" id="testCreateSchool" placeholder="School...">
+            <datalist id="schools">
+                <div id="schoolsList"></div>        
+            </datalist>
+            <br>
+            <label for="testCreateTime" class="text-success">When will this test take place?</label>
+            <input required type="date" class="form-control" name="testCreateTime" id="testCreateTime">
+            <br>
+            <label for="testCreateSubject" class="text-success">What subject is this test in?</label>
+            <input required list="subjects" class="form-control" name="testCreateSubject" id="testCreateSubject" placeholder="Subject...">
+            <datalist id="subjects">
+                <div id="subjectsList"></div>        
+            </datalist>
+            <br>
+            <button type="submit" form="testCreateForm" class="btn btn-outline-success form-control"><i class="fas fa-cut"></i> Create</button>
+        </div>
+    </form> 
+    
+    <hr>
+</div>
+
+<div id="testEdit">
+    <h2>Test Edit Form:</h2>
+    <form id="testEditForm" name="testEditForm" method="POST" action="{% url 'tests'%}">
+        {%csrf_token%}
+        <input type="text" hidden id="testEditTest">
+        <div class="form-group">
+            <label for="testEditName">Enter the test's name:</label>
+            <input type="text" required class="form-control" name="testEditName" id="testEditName" placeholder="Test Name...">
+            <br>
+            <label for="testEditSchool">Choose which school this test will take place in:</label>
+            <input required list="schools" class="form-control" name="testEditSchool" id="testEditSchool" placeholder="School...">
+            <datalist id="schools">
+                <div id="schoolsList"></div>        
+            </datalist>
+            <br>
+            <label for="testEditTime">When will this test take place?</label>
+            <input required type="date" class="form-control" name="testEditTime" id="testEditTime">
+            <br>
+            <label for="testEditSubject">What subject is this test in?</label>
+            <input required list="subjects" class="form-control" name="testEditSubject" id="testEditSubject" placeholder="Subject...">
+            <datalist id="subjects">
+                <div id="subjectsList"></div>        
+            </datalist>
+            <br>
+            
+        </div>
+    </form> 
+    <div id="rowDisplay"></div>
+</div>
+
+<br>
+<div id="testView"></div>
+{%endblock%}

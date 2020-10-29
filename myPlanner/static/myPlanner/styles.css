@@ -1,0 +1,65 @@
+#wall {
+    background-image: linear-gradient(#ffffff, #0274d821);
+    background-color: transparent;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+   }
+html::-webkit-scrollbar {  
+    width: 0 !important;
+    display: none;  }
+body {
+    background: url("background.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+#school {
+    background-image: linear-gradient(#ffffff, #0274d821);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+   }
+
+#note {
+    background-image: linear-gradient(#ffffff, #0274d821);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+   }
+
+#test {
+    background-image: linear-gradient(#ffffff, #0274d821);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+   }
+
+#markdownPreview {
+    height:250px;
+    overflow:auto;
+    background-color: #eeeeee;
+    border: 0.5px dotted black;
+    text-align: left;
+}
+
+#previewDiv {
+    border: 1px solid #d9e2ef;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+#editMarkdownPreview {
+    height:250px;
+    overflow:auto;
+    background-color: #eeeeee;
+    border: 0.5px dotted black;
+    text-align: left;
+}
+
+#editPreviewDiv {
+    border: 1px solid #d9e2ef;
+    border-radius: 4px; 
+    padding: 10px;
+}
